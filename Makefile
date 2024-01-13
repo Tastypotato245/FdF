@@ -6,52 +6,72 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/13 15:52:01 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/13 20:58:05 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 
+SRCS		=	fdf.c	\
+OBJS		=	$(SRCS:.c=.o)
+
 LIBFT		=	libft/
 GNL			=	get_next_line/
 MLX			=	minilibx/
+LIBFT_A		=	$(addprefix $(LIBFT), libft.a)
+GNL_A		=	$(addprefix $(GNL), libgnl.a)
+MLX_A		=	$(addprefix $(MLX), libmlx.a)
+
+SRCS_DIR	=	./srcs/
+INCL_DIR	=	./includes/
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I$(INCLUDE)
+CFLAGS		=	-Wall -Wextra -Werror
 RM			=	rm -f
-SRCS		=	fdf.c
-OBJS		=	$(SRCS:.c=.o)
+ECHO		=	echo
 
 all			:	$(NAME)
+				@$(ECHO) "*** Make <fdf> complete."
 
-$(NAME)		:
+bonus		:	$(NAME)
+				@$(ECHO) "*** Make <fdf> complete. (BONUS)"
 
+$(NAME)		:	$(OBJS) $(LIBFT_A) $(GNL_A) $(PRINTF_A)
+				@$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(MLX) -lmlx -lm -o $(NAME) -framework OpenGL -framework AppKit
+				@$(ECHO) "*** Linking complete."
 
-bonus		:	all
+$(LIBFT_A):
+				@$(MAKE) -s -C $(LIBFT)
+				@echo "Compiled $(LIBFT_A)."
+
+$(GNL_A):
+				@$(MAKE) -s -C $(GNL)
+				@echo "Compiled $(GNL_A)."
+
+$(MLX_A):
+				@$(MAKE) -s -C $(MLX)
+				@echo "Compiled $(MLX_A)."
 
 clean		:
 				@$(RM) $(OBJS)
-				@echo "Clean FdF."
-				@$(MAKE) clean -s -C $(LIBFT)
-				@echo "Clean libft."
-				@$(MAKE) clean -s -C $(GNL)
-				@echo "Clean gnl."
-				@$(MAKE) clean -s -C $(MLX)
-				@echo "Clean mlx."
+				@$(MAKE) clean -C $(LIBFT)
+				@$(MAKE) clean -C $(GNL)
+				@$(MAKE) clean -C $(MLX)
+				@$(ECHO) "*** Clean <fdf>."
 
 fclean		:
-				@$(MAKE) clean -s
-				@$(MAKE) fclean -s -C $(LIBFT)
-				@echo "Full clean libft."
-				@$(MAKE) fclean -s -C $(GNL)
-				@echo "Full clean gnl."
-				@$(MAKE) clean -s -C $(MLX)
-				@echo "Clean mlx."
+				@$(MAKE) clean -C $(LIBFT)
+				@$(MAKE) -C $(LIBFT) fclean
+				@$(MAKE) -C $(GNL) fclean
+				@$(MAKE) -C $(MLX) clean
 				@$(RM) $(NAME)
-				@echo "Removed executable."
+				@$(RM) $(OBJS)
+				@$(ECHO) "*** Fclean <fdf>."
 
 re			:
+				@$(ECHO) "*** Re-make <pipex> start."
 				@$(MAKE) fclean
 				@$(MAKE) all
+				@$(ECHO) "*** Re-make <pipex> complete."
 
 .PHONY		:	all clean fclean re bonus
