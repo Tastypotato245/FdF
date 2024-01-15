@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 14:22:33 by kyusulee         ###   ########.fr       */
+/*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
+/*   Updated: 2024/01/15 14:09:23 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include <fdf.h>
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include "../kyusulib/kyusulib.h"
-
-#endif
+int	main(int argc, char **argv)
+{
+	if (argc != 2)	
+		exit_handler(0, argv[0], NULL);
+	ft_printf("%s\n", argv[1]);
+}
