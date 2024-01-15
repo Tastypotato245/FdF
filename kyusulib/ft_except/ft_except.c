@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:38:34 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 14:07:25 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:36:35 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@ void	exit_handler(int case_num, char *program_name, char *object)
 {
 	if (program_name != NULL)
 	{
-		ft_putstr_fd(program_name, 2);
-		ft_putstr_fd(": ", 2);
-	}
-	if (object != NULL)
-	{
-		ft_putstr_fd(object, 2);
-		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(program_name, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
 	}
 	if (case_num == 0)
 	{
-		ft_putstr_fd("parse error\n", 2);
+		ft_putstr_fd("parse error: ", STDERR_FILENO);
+		ft_putendl_fd(object, STDERR_FILENO);
 		exit(1);
 	}
 	else if (case_num == 127)
-		ft_putstr_fd("command not found\n", 2);
+	{
+		ft_putstr_fd("command not found: ", STDERR_FILENO);
+	}
 	else
-		ft_putendl_fd(strerror(errno), 2);
+	{
+		ft_putstr_fd(strerror(errno), STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
+	ft_putendl_fd(object, STDERR_FILENO);
 	exit(case_num);
 }
 

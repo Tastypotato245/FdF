@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 14:09:23 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:38:50 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	main(int argc, char **argv)
 {
 	if (argc != 2)	
-		exit_handler(0, argv[0], NULL);
+		exit_handler(0, "fdf", "./fdf <file.fdf>");
 	ft_printf("%s\n", argv[1]);
 }
