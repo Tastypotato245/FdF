@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 17:30:48 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:28:03 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,23 @@ static t_map	*ft_map_init(void)
 	return (map);
 }
 
+static void	print_array(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			ft_printf("%d,%d\t", map->array[i][j][0], map->array[i][j][1]);
+		}
+		ft_printf("\n");
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_fdf	*env;
@@ -75,5 +92,7 @@ int	main(int argc, char **argv)
 	env->camera = ft_camera_init(env);
 	//ft_hook_controls(env);
 	//ft_draw(env->map, env);
-	mlx_loop(env->mlx);
+	//mlx_loop(env->mlx);
+	print_array(env->map);
+	exit(0);
 }
