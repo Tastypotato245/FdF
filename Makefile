@@ -6,13 +6,15 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/15 14:22:21 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/15 17:47:38 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 
-SRCS		=	$(SRCS_DIR)fdf.c
+SRCS		=	$(SRCS_DIR)fdf.c	\
+				$(SRCS_DIR)parse.c	\
+				$(SRCS_DIR)utils.c
 OBJS		=	$(SRCS:.c=.o)
 
 KYUSULIB	=	./kyusulib/
@@ -57,6 +59,6 @@ re			:
 				@$(ECHO) "*** Re-make <fdf> complete."
 
 ./srcs/%.o	:	./srcs/%.c
-				@$(CC) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
+				@$(CC) $(CFLAGS) -I$(INCL_DIR) -c $^ -o $@
 
 .PHONY		:	all clean fclean re bonus

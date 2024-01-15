@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyusulee <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 13:23:00 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/08 12:36:27 by kyusulee         ###   ########.fr       */
+/*   Created: 2024/01/15 17:33:42 by kyusulee          #+#    #+#             */
+/*   Updated: 2024/01/15 17:33:51 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int		ft_lstcap_change(t_lst *lst, size_t new_cap);
 void	*ft_lstdel_one(t_lst **lst, int fd);
 int		ft_lstappend_str(t_lst *lst, char *buf, size_t len);
 int		ft_lstset_end(t_lst *lst);
-
 char	*make_str_from_lst(t_lst **lst, t_lst *now);
 char	*read_str_from_fd(t_lst **lst, t_lst *now);
 char	*get_next_line(int fd);

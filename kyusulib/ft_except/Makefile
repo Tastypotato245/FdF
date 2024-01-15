@@ -6,14 +6,15 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 13:38:59 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/15 13:49:33 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/15 17:46:13 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftexcept.a
 
 HEAD	=	ft_except.h
-SRCS	=	ft_except.c
+SRCS	=	ft_except.c	\
+			ft_free.c
 OBJS	=	$(SRCS:.c=.o)
 
 AR		=	ar -rc

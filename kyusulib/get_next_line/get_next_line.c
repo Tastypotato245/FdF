@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyusulee <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 13:22:36 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/08 12:03:23 by kyusulee         ###   ########.fr       */
+/*   Created: 2024/01/15 17:34:02 by kyusulee          #+#    #+#             */
+/*   Updated: 2024/01/15 17:34:03 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	*read_str_from_fd(t_lst **lst, t_lst *now)
 char	*get_next_line(int fd)
 {
 	static t_lst	*lst;
+	t_lst			*now;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
@@ -82,15 +83,17 @@ char	*get_next_line(int fd)
 	{
 		if (ft_lstnewadd_front(&lst, fd) != 0)
 			return (NULL);
+		now = lst;
 	}
 	else
 	{
-		if (lst->fd != fd)
+		now = ft_lstfind_lst(lst, fd);
+		if (now == NULL)
 		{
-			ft_lstdel_one(&lst, lst->fd);
 			if (ft_lstnewadd_front(&lst, fd) != 0)
 				return (NULL);
+			now = lst;
 		}
 	}
-	return (read_str_from_fd(&lst, lst));
+	return (read_str_from_fd(&lst, now));
 }
