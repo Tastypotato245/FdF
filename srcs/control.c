@@ -6,11 +6,11 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:56:23 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/16 15:56:38 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:04:28 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <fdf.h>
 
 int	ft_close_win(void *params)
 {

@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/16 16:02:54 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:07:59 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <mlx.h>
+# include <math.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -98,6 +99,7 @@ void			arg_checker(char *filename, t_map *map);
 
 // utils.c
 unsigned int	ft_atoi_base(const char *str, const char *base);
+int				ft_min(int a, int b);
 
 // mouse.c
 int				ft_mouse_up(int button, int x, int y, void *params);

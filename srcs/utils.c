@@ -6,11 +6,18 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:24:52 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 17:42:58 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:08:01 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
 
 static int	val_in_base(const char c, const char *base)
 {

@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:55:10 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/16 15:56:17 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:06:52 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_key_press(int keycode, void *params)
 
 	env = (t_fdf *)params;
 	if (keycode == ARROW_DOWN || keycode == ARROW_LEFT || keycode == ARROW_UP
-		|| keycode == ARROW_RIGHT)
+			|| keycode == ARROW_RIGHT)
 		ft_translate(keycode, env);
 	else if (keycode == MINUS || keycode == PLUS)
 		ft_mod_height(keycode, env);
@@ -90,6 +90,6 @@ int	ft_key_press(int keycode, void *params)
 		ft_reset(env);
 	else if (keycode == ESCAPE)
 		ft_close_win(env);
-	ft_draw(env->map, env);
+//	ft_draw(env->map, env);
 	return (0);
 }

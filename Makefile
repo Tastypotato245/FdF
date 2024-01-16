@@ -6,7 +6,7 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/15 17:47:38 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/16 16:05:14 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ NAME		=	fdf
 
 SRCS		=	$(SRCS_DIR)fdf.c	\
 				$(SRCS_DIR)parse.c	\
-				$(SRCS_DIR)utils.c
+				$(SRCS_DIR)utils.c	\
+				$(SRCS_DIR)control.c\
+				$(SRCS_DIR)mouse.c	\
+				$(SRCS_DIR)keyboard.c
+
 OBJS		=	$(SRCS:.c=.o)
 
 KYUSULIB	=	./kyusulib/
