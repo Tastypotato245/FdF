@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/15 19:42:39 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:02:54 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,23 @@ typedef struct s_fdf
 	t_mouse		*mouse;
 }				t_fdf;
 
+// parse.c
 void			arg_checker(char *filename, t_map *map);
+
+// utils.c
 unsigned int	ft_atoi_base(const char *str, const char *base);
+
+// mouse.c
+int				ft_mouse_up(int button, int x, int y, void *params);
+int				ft_mouse_down(int button, int x, int y, void *params);
+int				ft_mouse_move(int x, int y, void *params);
+
+// control.c
+int				ft_close_win(void *params);
+void			ft_hook_controls(t_fdf *env);
+double			ft_reset_angles(double angle);
+
+// keyboard.c
+int				ft_key_press(int keycode, void *params);
 
 #endif
