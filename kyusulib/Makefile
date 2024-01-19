@@ -6,7 +6,7 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 18:55:32 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/15 13:53:12 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/19 13:07:43 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ RM			=	rm -f
 ECHO		=	echo
 
 all			:	$(NAME)
-				@$(ECHO) "*** Make <kyusulib> complete."
 
 $(NAME)		:	$(LIBFT_A) $(GNL_A) $(PRINTF_A) $(EXCEPT_A)
 				@$(ARX) $(LIBFT_A)
@@ -38,6 +37,7 @@ $(NAME)		:	$(LIBFT_A) $(GNL_A) $(PRINTF_A) $(EXCEPT_A)
 				@$(ARX) $(EXCEPT_A)
 				@$(AR) $(NAME) *.o
 				@$(RM) *.o
+				@$(ECHO) "*** Make <kyusulib> complete."
 
 $(LIBFT_A)	:
 				@$(MAKE) -C $(LIBFT)

@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/16 16:05:59 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:41:36 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,24 @@ static t_fdf	*ft_init(const char *path)
 	return (env);
 }
 
+static t_map	*ft_map_init(void)
+{
+	t_map	*map;
+
+	map = (t_map *)null_guard(malloc(sizeof(t_map)));
+	map->height = 0;
+	map->width = 0;
+	map->array = NULL;
+	return (map);
+}
+
 static t_camera	*ft_camera_init(t_fdf *env)
 {
 	t_camera	*camera;
 
 	camera = (t_camera *)null_guard(malloc(sizeof(t_camera)));
-	//camera->zoom = min(WIDTH / env->map->width / 2,
-	//		HEIGHT / env->map->height / 2);
+//	camera->zoom = ft_min(WIDTH / env->map->width / 2,
+//			HEIGHT / env->map->height / 2);
 	camera->zoom = WIDTH / env->map->width / 2;
 	camera->x_angle = -0.615472907;
 	camera->y_angle = -0.523599;
@@ -47,19 +58,6 @@ static t_camera	*ft_camera_init(t_fdf *env)
 	camera->y_offset = 0;
 	camera->iso = 1;
 	return (camera);
-}
-
-static t_map	*ft_map_init(void)
-{
-	t_map	*map;
-
-	map = (t_map *)null_guard(malloc(sizeof(t_map)));
-	map->height = 0;
-	map->width = 0;
-	map->array = NULL;
-	map->z_max = 0;
-	map->z_min = 0;
-	return (map);
 }
 
 static void	print_array(t_map *map)
@@ -85,15 +83,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)	
 		exit_handler(0, "fdf", "./fdf <file.fdf>");
-	ft_printf("%s\n", argv[1]);
 	env = ft_init(argv[1]);
 	env->map = ft_map_init();
 	arg_checker(argv[1], env->map);
-	env->camera = ft_camera_init(env);
-
-	ft_hook_controls(env);
-	//ft_draw(env->map, env);
-	mlx_loop(env->mlx);
 	print_array(env->map);
+	fflush(stdout);
+	env->camera = ft_camera_init(env);
+	ft_hook_controls(env);
+	drawer(env, env->map);
+	mlx_loop(env->mlx);
 	exit(0);
 }

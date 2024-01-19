@@ -6,7 +6,7 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/16 16:05:14 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/19 19:31:34 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS		=	$(SRCS_DIR)fdf.c	\
 				$(SRCS_DIR)utils.c	\
 				$(SRCS_DIR)control.c\
 				$(SRCS_DIR)mouse.c	\
-				$(SRCS_DIR)keyboard.c
+				$(SRCS_DIR)keyboard.c	\
+				$(SRCS_DIR)draw.c
 
 OBJS		=	$(SRCS:.c=.o)
 
@@ -38,12 +39,10 @@ all			:	$(NAME)
 bonus		:	$(NAME)
 				@$(ECHO) "*** Make <fdf> complete. (BONUS)"
 
-$(NAME)		:	$(OBJS) $(KYUSULIB_A)
-				@$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -L$(KYUSULIB) -lkyusulib -lmlx -lm -framework OpenGL -framework AppKit -o $(NAME)
-				@$(ECHO) "*** Linking complete."
-
-$(KYUSULIB_A)	:
+$(NAME)		:	$(OBJS)
 				@$(MAKE) -C $(KYUSULIB)
+				$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -L$(KYUSULIB) -lkyusulib -lmlx -lm -framework OpenGL -framework AppKit -o $(NAME)
+				@$(ECHO) "*** Linking complete."
 
 clean		:
 				@$(MAKE) clean -C $(KYUSULIB)
@@ -63,6 +62,6 @@ re			:
 				@$(ECHO) "*** Re-make <fdf> complete."
 
 ./srcs/%.o	:	./srcs/%.c
-				@$(CC) $(CFLAGS) -I$(INCL_DIR) -c $^ -o $@
+				$(CC) $(CFLAGS) -I$(INCL_DIR) -c $^ -o $@
 
 .PHONY		:	all clean fclean re bonus

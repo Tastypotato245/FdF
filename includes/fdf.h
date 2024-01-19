@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/16 16:07:59 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:58:17 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_point
 	int	y;
 	int	z;
 	int	color;
-	int	reverse;
 }				t_point;
 
 typedef struct s_map
@@ -54,8 +53,9 @@ typedef struct s_map
 	int	height;
 	int	width;
 	int	***array;
-	int	z_max;
+	int z_max;
 	int	z_min;
+	int	draw_direction;
 }				t_map;
 
 typedef struct s_camera
@@ -113,5 +113,8 @@ double			ft_reset_angles(double angle);
 
 // keyboard.c
 int				ft_key_press(int keycode, void *params);
+
+// draw.c
+void			drawer(t_fdf *env, t_map *map);
 
 #endif
