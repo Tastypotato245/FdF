@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 20:02:25 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:28:00 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	put_pixel(t_fdf *env, int x, int y, int color)
 {
 	int		i;
 
-	if (x >= 0 && x <= WIDTH && y >= 0 && y <= HEIGHT)
+	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
 	{
 		i = (x * env->bpp / 8) + (y * env->size_line);
 		env->data_addr[i] = color;
