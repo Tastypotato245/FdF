@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 19:58:18 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:02:25 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ int	get_default_color(int z, int z_min, int z_max)
 
 	max = z_max - z_min;
 	if (max == 0)
-		return (0x59A896);
+		return (0xFFFFFF);
 	percent = ((double)(z - z_min) / max);
 	if (percent < 0.2)
-		return (0x59A896);
+		return (0xFFFFFF);
 	else if (percent < 0.4)
-		return (0x714674);
+		return (0x79E5CB);
 	else if (percent < 0.6)
-		return (0x6CCCB6);
+		return (0x79E5CB);
 	else if (percent < 0.8)
 		return (0x79E5CB);
 	else
-		return (0xFFFFFF);
+		return (0x79E5CB);
 }
 
 static int	get_color(int z, int z_min, int z_max, int color)
@@ -66,7 +66,7 @@ void	draw_y0_first(t_fdf *env, t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			put_pixel(env, x * 10, y * 10, \
+			put_pixel(env, x * 3, y * 3, \
 					get_color(map->array[y][x][0], map->z_min, \
 						map->z_max, map->array[y][x][1]));
 			++x;

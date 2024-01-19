@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 19:41:36 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:03:08 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv)
 	env->map = ft_map_init();
 	arg_checker(argv[1], env->map);
 	print_array(env->map);
-	fflush(stdout);
+//	fflush(stdout);
 	env->camera = ft_camera_init(env);
 	ft_hook_controls(env);
 	drawer(env, env->map);

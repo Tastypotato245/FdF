@@ -6,7 +6,7 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/19 19:31:34 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/19 20:01:53 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ bonus		:	$(NAME)
 
 $(NAME)		:	$(OBJS)
 				@$(MAKE) -C $(KYUSULIB)
-				$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -L$(KYUSULIB) -lkyusulib -lmlx -lm -framework OpenGL -framework AppKit -o $(NAME)
+				@$(CC) $(CFLAGS) -I$(INCL_DIR) $(OBJS) -L$(KYUSULIB) -lkyusulib -lmlx -lm -framework OpenGL -framework AppKit -o $(NAME)
 				@$(ECHO) "*** Linking complete."
 
 clean		:
@@ -62,6 +62,6 @@ re			:
 				@$(ECHO) "*** Re-make <fdf> complete."
 
 ./srcs/%.o	:	./srcs/%.c
-				$(CC) $(CFLAGS) -I$(INCL_DIR) -c $^ -o $@
+				@$(CC) $(CFLAGS) -I$(INCL_DIR) -c $^ -o $@
 
 .PHONY		:	all clean fclean re bonus
