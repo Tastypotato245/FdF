@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 19:58:17 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/24 19:04:54 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,22 @@ unsigned int	ft_atoi_base(const char *str, const char *base);
 int				ft_min(int a, int b);
 
 // mouse.c
-int				ft_mouse_up(int button, int x, int y, void *params);
-int				ft_mouse_down(int button, int x, int y, void *params);
-int				ft_mouse_move(int x, int y, void *params);
+int				mouse_up(int button, int x, int y, void *params);
+int				mouse_down(int button, int x, int y, void *params);
+int				mouse_move(int x, int y, void *params);
 
 // control.c
-int				ft_close_win(void *params);
-void			ft_hook_controls(t_fdf *env);
-double			ft_reset_angles(double angle);
+int				close_win(void *params);
+void			hook_controls(t_fdf *env);
+double			reset_angles(double angle);
 
 // keyboard.c
-int				ft_key_press(int keycode, void *params);
+int				key_press(int keycode, void *params);
 
 // draw.c
-void			drawer(t_fdf *env, t_map *map);
+void			drawer(t_map *map, t_fdf *env);
+
+// project.c
+t_point			project(int x, int y, t_fdf *env);
 
 #endif

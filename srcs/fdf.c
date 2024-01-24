@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 20:03:08 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:12:09 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ static t_fdf	*ft_init(const char *path)
 	env->mlx = mlx_init();
 	env->win = null_guard(mlx_new_window(env->mlx, WIDTH, HEIGHT, title));
 	free(title);
-	env->img = null_guard(mlx_new_image(env->mlx, WIDTH, HEIGHT));
-	env->data_addr = mlx_get_data_addr(env->img, &env->bpp, &env->size_line,
-			&env->endian);
 	env->map = NULL;
 	env->camera = NULL;
 	env->mouse = (t_mouse *)null_guard(malloc(sizeof(t_mouse)));
 	return (env);
 }
 
-static t_map	*ft_map_init(void)
+static t_map	*map_init(void)
 {
 	t_map	*map;
 
@@ -42,14 +39,13 @@ static t_map	*ft_map_init(void)
 	return (map);
 }
 
-static t_camera	*ft_camera_init(t_fdf *env)
+static t_camera	*camera_init(t_fdf *env)
 {
 	t_camera	*camera;
 
 	camera = (t_camera *)null_guard(malloc(sizeof(t_camera)));
-//	camera->zoom = ft_min(WIDTH / env->map->width / 2,
-//			HEIGHT / env->map->height / 2);
-	camera->zoom = WIDTH / env->map->width / 2;
+	camera->zoom = ft_min(WIDTH / env->map->width / 2,
+			HEIGHT / env->map->height / 2);
 	camera->x_angle = -0.615472907;
 	camera->y_angle = -0.523599;
 	camera->z_angle = 0.615472907;
@@ -84,12 +80,12 @@ int	main(int argc, char **argv)
 	if (argc != 2)	
 		exit_handler(0, "fdf", "./fdf <file.fdf>");
 	env = ft_init(argv[1]);
-	env->map = ft_map_init();
+	env->map = map_init();
 	arg_checker(argv[1], env->map);
 	print_array(env->map);
-//	fflush(stdout);
-	env->camera = ft_camera_init(env);
-	ft_hook_controls(env);
+	fflush(stdout);
+	env->camera = camera_init(env);
+	hook_controls(env);
 	drawer(env, env->map);
 	mlx_loop(env->mlx);
 	exit(0);

@@ -6,13 +6,13 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:56:23 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 19:24:41 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:10:21 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
 
-int	ft_close_win(void *params)
+int	close_win(void *params)
 {
 	t_fdf	*env;
 	int		x;
@@ -38,16 +38,16 @@ int	ft_close_win(void *params)
 	exit(0);
 }
 
-void	ft_hook_controls(t_fdf *env)
+void	hook_controls(t_fdf *env)
 {
-	mlx_hook(env->win, 2, 0, ft_key_press, env);
-	mlx_hook(env->win, 4, 0, ft_mouse_down, env);
-	mlx_hook(env->win, 5, 0, ft_mouse_up, env);
-	mlx_hook(env->win, 6, 0, ft_mouse_move, env);
-	mlx_hook(env->win, 17, 0, ft_close_win, env);
+	mlx_hook(env->win, 2, 0, key_press, env);
+	mlx_hook(env->win, 4, 0, mouse_down, env);
+	mlx_hook(env->win, 5, 0, mouse_up, env);
+	mlx_hook(env->win, 6, 0, mouse_move, env);
+	mlx_hook(env->win, 17, 0, close_win, env);
 }
 
-double	ft_reset_angles(double angle)
+double	reset_angles(double angle)
 {
 	if (angle >= M_PI)
 		return (-2 * M_PI - angle);

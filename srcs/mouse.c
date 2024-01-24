@@ -6,13 +6,13 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:50 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/19 19:24:32 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:11:13 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	ft_zoom(int button, t_fdf *env)
+static void	zoom(int button, t_fdf *env)
 {
 	if (button == MOUSE_WHEEL_UP)
 		env->camera->zoom += 2;
@@ -20,10 +20,10 @@ static void	ft_zoom(int button, t_fdf *env)
 		env->camera->zoom -= 2;
 	if (env->camera->zoom < 1)
 		env->camera->zoom = 1;
-	//ft_draw(env->map, env);
+	drawer(env->map, env);
 }
 
-static void	ft_move_z(int x, int y, t_fdf *env)
+static void	move_z(int x, int y, t_fdf *env)
 {
 	if (x < (WIDTH / 2) + env->camera->x_offset)
 		env->camera->z_angle -= (y - env->mouse->prev_y) * 0.002;
@@ -31,10 +31,10 @@ static void	ft_move_z(int x, int y, t_fdf *env)
 		env->camera->z_angle += (y - env->mouse->prev_y) * 0.002;
 	env->mouse->prev_x = x;
 	env->mouse->prev_y = y;
-	//ft_draw(env->map, env);
+	drawer(env->map, env);
 }
 
-int	ft_mouse_up(int button, int x, int y, void *params)
+int	mouse_up(int button, int x, int y, void *params)
 {
 	t_fdf	*env;
 
@@ -47,13 +47,13 @@ int	ft_mouse_up(int button, int x, int y, void *params)
 	return (0);
 }
 
-int	ft_mouse_down(int button, int x, int y, void *params)
+int	mouse_down(int button, int x, int y, void *params)
 {
 	t_fdf	*env;
 
 	env = (t_fdf *)params;
 	if (button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN)
-		ft_zoom(button, env);
+		zoom(button, env);
 	else if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT
 			|| button == MOUSE_CLICK_MIDDLE)
 	{
@@ -64,7 +64,7 @@ int	ft_mouse_down(int button, int x, int y, void *params)
 	return (0);
 }
 
-int	ft_mouse_move(int x, int y, void *params)
+int	mouse_move(int x, int y, void *params)
 {
 	t_fdf	*env;
 
@@ -73,11 +73,11 @@ int	ft_mouse_move(int x, int y, void *params)
 	{
 		env->camera->x_angle += (y - env->mouse->prev_y) * 0.002;
 		env->camera->y_angle += (x - env->mouse->prev_x) * 0.002;
-		env->camera->x_angle = ft_reset_angles(env->camera->x_angle);
-		env->camera->y_angle = ft_reset_angles(env->camera->y_angle);
+		env->camera->x_angle = reset_angles(env->camera->x_angle);
+		env->camera->y_angle = reset_angles(env->camera->y_angle);
 		env->mouse->prev_x = x;
 		env->mouse->prev_y = y;
-		//		ft_draw(env->map, env);
+		drawer(env->map, env);
 	}
 	else if (env->mouse->button == MOUSE_CLICK_LEFT)
 	{
@@ -85,9 +85,9 @@ int	ft_mouse_move(int x, int y, void *params)
 		env->camera->y_offset += (y - env->mouse->prev_y);
 		env->mouse->prev_x = x;
 		env->mouse->prev_y = y;
-		//		ft_draw(env->map, env);
+		drawer(env->map, env);
 	}
 	else if (env->mouse->button == MOUSE_CLICK_MIDDLE)
-		ft_move_z(x, y, env);
+		move_z(x, y, env);
 	return (0);
 }
