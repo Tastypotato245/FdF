@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 21:35:18 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:44:37 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:59:25 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	get_default_color(int z, int z_min, int z_max)
 	if (percent < 0.2)
 		return (0xFFFFFF);
 	else if (percent < 0.4)
-		return (0x79E5CB);
+		return (0x000099);
 	else if (percent < 0.6)
-		return (0x79E5CB);
+		return (0x009900);
 	else if (percent < 0.8)
-		return (0x79E5CB);
+		return (0x990000);
 	else
 		return (0x79E5CB);
 }
