@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 18:04:33 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:15:44 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,6 @@ static void	bresenham_1(t_point s, t_point e, t_fdf *env, t_point dir)
 	}
 }
 
-// branch
-// draw_case == 1 : steep : n > 1 || n < -1
-// draw_case == 0 : steep : 0 < n <= 1 || -1 <= n < 0
 static void	draw_line(t_point s, t_point e, t_fdf *env)
 {
 	t_point	d;
@@ -151,7 +148,7 @@ static void	draw_line(t_point s, t_point e, t_fdf *env)
 	d.x = ft_abs(e.x - s.x);
 	dir.x = -2 * (s.x > e.x) + 1;
 	dir.y = -2 * (s.y > e.y) + 1;
-	if (d.x != 0 && d.y / d.x > 1)
+	if (d.x == 0 || d.y / d.x >= 1)
 		bresenham_1(s, e, env, dir);
 	else
 		bresenham_0(s, e, env, dir);
@@ -247,12 +244,15 @@ void	drawer(t_map *map, t_fdf *env)
 	t_point	flag;
 
 	if (env->img != NULL)
+	{
 		func_guard(mlx_destroy_image(env->mlx, env->img));
+		env->img = NULL;
+	}
 	env->img = null_guard(mlx_new_image(env->mlx, WIDTH, HEIGHT));
 	env->data_addr = null_guard(mlx_get_data_addr(env->img, &env->bpp, \
 				&env->size_line, &env->endian));
-	flag.x = -2 * (env->camera->x_angle > 0) + 1;
-	flag.y = -2 * (env->camera->y_angle > 0) + 1;
+	flag.x = -2 * (env->camera->x_angle < 0) + 1;
+	flag.y = -2 * (env->camera->y_angle < 0) + 1;
 	if (flag.x == 1 && flag.y == 1)
 		draw_px_py(env, map);
 	else if (flag.x == 1 && flag.y == -1)

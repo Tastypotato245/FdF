@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 18:06:08 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:34:22 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,32 @@ static t_camera	*camera_init(t_fdf *env)
 	camera = (t_camera *)null_guard(malloc(sizeof(t_camera)));
 	camera->zoom = ft_min(WIDTH / env->map->width / 2,
 			HEIGHT / env->map->height / 2);
-	camera->x_angle = -0.615472907;
+	camera->x_angle = -0.523599;
 	camera->y_angle = -0.523599;
-	camera->z_angle = 0.615472907;
-	camera->z_height = 1;
+	camera->z_angle = 0.615472;
+	camera->z_height = 3;
 	camera->x_offset = 0;
 	camera->y_offset = 0;
 	camera->iso = 1;
 	return (camera);
 }
 
-//static void	print_array(t_map *map)
-//{
-//	int	i;
-//	int	j;
-//
-//	i = -1;
-//	while (++i < map->height)
-//	{
-//		j = -1;
-//		while (++j < map->width)
-//		{
-//			ft_printf("%d,%d\t", map->array[i][j][0], map->array[i][j][1]);
-//		}
-//		ft_printf("\n");
-//	}
-//}
+static void	print_array(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			ft_printf("%d,%d\t", map->array[i][j][0], map->array[i][j][1]);
+		}
+		ft_printf("\n");
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 	env = ft_init(argv[1]);
 	env->map = map_init();
 	arg_checker(argv[1], env->map);
-	//print_array(env->map);
+	print_array(env->map);
 	env->camera = camera_init(env);
 	hook_controls(env);
 	drawer(env->map, env);

@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 16:15:23 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 22:06:14 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:33:13 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ t_point	project(int x, int y, t_fdf *env)
 
 	point.z = env->map->array[y][x][0];
 	if (env->map->array[y][x][1] >= 0)
-		point.color = env->map->array[y][x][1];
+		point.color = -1;
+		//point.color = env->map->array[y][x][1];
 	else
 		point.color = get_default_color(env->map->array[y][x][0], \
 				env->map->z_min, env->map->z_max);

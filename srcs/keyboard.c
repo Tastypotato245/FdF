@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:55:10 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 19:03:19 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:19:39 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	reset(t_fdf *env)
 	{
 		env->camera->x_angle = -0.523599;
 		env->camera->y_angle = -0.523599;
-		env->camera->z_angle = 0.615472907;
+		env->camera->z_angle = 0.615472;
 	}
 	else
 	{
@@ -45,7 +45,7 @@ static void	toggle_projection(t_fdf *env)
 	{
 		env->camera->x_angle = -0.523599;
 		env->camera->y_angle = -0.523599;
-		env->camera->z_angle = 0.615472907;
+		env->camera->z_angle = 0.615472;
 	}
 	env->camera->iso = !env->camera->iso;
 }
