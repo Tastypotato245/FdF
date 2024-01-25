@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:54:50 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:44:17 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ int	main(int argc, char **argv)
 	hook_controls(env);
 	drawer(env->map, env);
 	mlx_loop(env->mlx);
-	exit(0);
+	exit (0);
 }
