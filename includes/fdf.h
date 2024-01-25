@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:21:00 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:39:34 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_map
 	int	height;
 	int	width;
 	int	***array;
-	int z_max;
+	int	z_max;
 	int	z_min;
 	int	draw_direction;
 }				t_map;
@@ -100,6 +100,7 @@ void			arg_checker(char *filename, t_map *map);
 // utils.c
 unsigned int	ft_atoi_base(const char *str, const char *base);
 int				ft_min(int a, int b);
+int				ft_abs(int n);
 
 // mouse.c
 int				mouse_up(int button, int x, int y, void *params);
@@ -115,10 +116,16 @@ double			reset_angles(double angle);
 int				key_press(int keycode, void *params);
 
 // draw.c
-int				get_default_color(int z, int z_min, int z_max);
 void			drawer(t_map *map, t_fdf *env);
+
+// bresenham.c
+void			draw_line(t_point s, t_point e, t_fdf *env);
 
 // project.c
 t_point			project(int x, int y, t_fdf *env);
+
+// color.c
+int				get_default_color(int z, int z_min, int z_max);
+int				get_color(t_point e);
 
 #endif

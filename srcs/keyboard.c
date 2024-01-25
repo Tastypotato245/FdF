@@ -6,11 +6,11 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:55:10 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:59:59 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:41:15 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <fdf.h>
 
 static void	reset(t_fdf *env)
 {

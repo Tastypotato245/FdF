@@ -6,11 +6,11 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:50 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 17:11:13 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:41:21 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <fdf.h>
 
 static void	zoom(int button, t_fdf *env)
 {

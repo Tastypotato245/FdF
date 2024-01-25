@@ -6,11 +6,18 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:24:52 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:54:50 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:41:31 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fdf.h>
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
 int	ft_min(int a, int b)
 {

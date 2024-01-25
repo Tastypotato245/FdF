@@ -6,20 +6,22 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/25 17:04:44 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/25 21:40:29 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 
-SRCS		=	$(SRCS_DIR)fdf.c	\
-				$(SRCS_DIR)parse.c	\
-				$(SRCS_DIR)utils.c	\
-				$(SRCS_DIR)control.c\
-				$(SRCS_DIR)mouse.c	\
+SRCS		=	$(SRCS_DIR)fdf.c		\
+				$(SRCS_DIR)parse.c		\
+				$(SRCS_DIR)mouse.c		\
 				$(SRCS_DIR)keyboard.c	\
+				$(SRCS_DIR)control.c	\
+				$(SRCS_DIR)color.c		\
 				$(SRCS_DIR)draw.c		\
-				$(SRCS_DIR)project.c
+				$(SRCS_DIR)bresenham.c	\
+				$(SRCS_DIR)project.c	\
+				$(SRCS_DIR)utils.c
 
 OBJS		=	$(SRCS:.c=.o)
 
