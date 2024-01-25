@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 22:06:13 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:30:10 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,74 @@ static int	get_color(int x, t_point s, t_point e, float factor)
 	return ((r << 16) | (g << 8) | b);
 }
 
+static void	set_kyusu_algorithm_1(t_point s, t_point e, t_point *len, t_point *m)
+{
+	m->x = s.x;
+	m->y = s.y;
+	len->x = e.x - s.x + 1;
+	len->y = e.y - s.y + 1;
+}
+
+// m->z == n
+// util->x == a
+// util->y == h
+// util->z == T
+// util->color == %
+static void	set_kyusu_algorithm_2(t_point len, t_point *m, t_point *util)
+{
+	int	a_dir;
+
+	m->z = (len.y + len.x / 2 - 1) / len.x;
+	util->z = len.y - m->z * len.x;
+	a_dir = -2 * (util->z < 0) + 1
+	util->x = 0;
+	util->y = 0;
+	util->color = 0;
+	while (util->y <= util->color)
+	{
+		util->x += a_dir;
+		util->y = len.x / (util->z / util->x);
+		util->color = len.x % (util->z / util->x);
+	}
+	ft_printf("\n *** !!! ***\n", m->z);
+	ft_printf("m->z == n : %d\n", m->z);
+	ft_printf("util->x == a : %d\n", util->x);
+	ft_printf("util->y == h : %d\n", util->y);
+	ft_printf("util->z == T : %d\n", util->z);
+	ft_printf("util->color == % : %d\n", util->color);
+	ft_printf(" *** !!! ***\n", m->z);
+}
+
+// m.color = n + a;
 static void	draw_line(t_point s, t_point e, t_fdf *env)
 {
+	t_point	len;
 	t_point	m;
 	t_point	dir;
+	t_point	util;
+	t_point	idx;
 
 	dir.x =  -2 * (s.x > e.x) + 1;
 	dir.y =  -2 * (s.y > e.y) + 1;
-	m.x = s.x;
-	m.y = s.y;
-	m.z = ((e.y - s.y + 1) + (e.x - s.x + 1) / 2 - 1) / (e.x - s.x + 1);
-	dir.z = (e.x - s.x + 1) / m.z;
-	while (m.x != e.x + x_dir)
+	set_kyusu_algorithm_1(s, e, &len, &m);
+	set_kyusu_algorithm_2(&len, &m, &util);
+	idx.x = 0
+	while (idx.x < len.x)
 	{
-		while (m.y )
+		idx.y = 0;
+		m.color = m.z;
+		if ((idx.x + 1) % util.y == 0)
+			m.color = m.z + util.x;
+		put_pixel(env, m.x, m.y, get_color(x, s, e, 1));
+		++(idx.y);
+		while (idx.y < m.color)
 		{
-			put_pixel(env, x, y, get_color(x, s, e, 1));
 			m.y += y_dir;
+			put_pixel(env, m.x, m.y, get_color(x, s, e, 1));
+			++(idx.y);
 		}
 		m.x += x_dir;
+		++(idx.x);
 	}
 }
 
