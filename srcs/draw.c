@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 16:30:10 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:00:40 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,102 +52,242 @@ static int	get_color(int x, t_point s, t_point e, float factor)
 	int		r;
 	int		g;
 	int		b;
-	float	percent;
 
+	x = 1;
 	if (s.z > e.z)
 	{
 		r = (s.color >> 16) & 0xFF;
 		g = (s.color >> 8) & 0xFF;
 		b = s.color & 0xFF;
-		r *= factor;
-		g *= factor;
-		b *= factor;
 	}
+	else
+	{
+		r = (e.color >> 16) & 0xFF;
+		g = (e.color >> 8) & 0xFF;
+		b = e.color & 0xFF;
+	}
+	r *= factor;
+	g *= factor;
+	b *= factor;
 	return ((r << 16) | (g << 8) | b);
 }
 
-static void	set_kyusu_algorithm_1(t_point s, t_point e, t_point *len, t_point *m)
+int	ft_abs(int n)
 {
-	m->x = s.x;
-	m->y = s.y;
-	len->x = e.x - s.x + 1;
-	len->y = e.y - s.y + 1;
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
-// m->z == n
-// util->x == a
-// util->y == h
-// util->z == T
-// util->color == %
-static void	set_kyusu_algorithm_2(t_point len, t_point *m, t_point *util)
+// steep 0 < n <= 1
+static void	bresenham_0(t_point s, t_point e, t_fdf *env, t_point dir)
 {
-	int	a_dir;
+	printf("!!! bresenham_0\n");
+	int		f;
+	int		df1;
+	int		df2;
+	t_point	m;
+	t_point	d;
 
-	m->z = (len.y + len.x / 2 - 1) / len.x;
-	util->z = len.y - m->z * len.x;
-	a_dir = -2 * (util->z < 0) + 1
-	util->x = 0;
-	util->y = 0;
-	util->color = 0;
-	while (util->y <= util->color)
+	d.y = ft_abs(e.y - s.y);
+	d.x = ft_abs(e.x - s.x);
+	m.x = s.x;
+	m.y = s.y;
+	f = 2 * d.y - d.x;
+	df1 = 2 * d.y;
+	df2 = 2 * (d.y - d.x);
+	printf("What is the d.x : %d\n", d.x);
+	printf("What is the d.y : %d\n", d.y);
+	printf("What is the f : %d\n", f);
+	printf("What is the df1 : %d\n", df1);
+	printf("What is the df2 : %d\n", df2);
+	printf("What is the dir.x : %d\n", dir.x);
+	printf("What is the dir.y : %d\n", dir.y);
+	fflush(stdout);
+	while (m.x != e.x + dir.x)
 	{
-		util->x += a_dir;
-		util->y = len.x / (util->z / util->x);
-		util->color = len.x % (util->z / util->x);
+		put_pixel(env, m.x, m.y, get_color(m.x, s, e, 1));
+		if (f < 0)
+			f += df1;
+		else
+		{
+			m.y += dir.y;
+			f += df2;
+		}
+		m.x += dir.x;
 	}
-	ft_printf("\n *** !!! ***\n", m->z);
-	ft_printf("m->z == n : %d\n", m->z);
-	ft_printf("util->x == a : %d\n", util->x);
-	ft_printf("util->y == h : %d\n", util->y);
-	ft_printf("util->z == T : %d\n", util->z);
-	ft_printf("util->color == % : %d\n", util->color);
-	ft_printf(" *** !!! ***\n", m->z);
+	printf("!!! bresenham_0 end\n");
 }
 
-// m.color = n + a;
+// steep n > 1
+static void	bresenham_1(t_point s, t_point e, t_fdf *env, t_point dir)
+{
+	printf("!!! bresenham_1\n");
+	int		f;
+	int		df1;
+	int		df2;
+	t_point	m;
+	t_point	d;
+
+	d.y = ft_abs(e.y - s.y);
+	d.x = ft_abs(e.x - s.x);
+	m.x = s.x;
+	m.y = s.y;
+	f = 2 * d.x - d.y;
+	df1 = 2 * d.x;
+	df2 = 2 * (d.x - d.y);
+	printf("What is the d.x : %d\n", d.x);
+	printf("What is the d.y : %d\n", d.y);
+	printf("What is the f : %d\n", f);
+	printf("What is the df1 : %d\n", df1);
+	printf("What is the df2 : %d\n", df2);
+	printf("What is the dir.x : %d\n", dir.x);
+	printf("What is the dir.y : %d\n", dir.y);
+	fflush(stdout);
+	while (m.y != e.y + dir.y)
+	{
+		put_pixel(env, m.x, m.y, get_color(m.x, s, e, 1));
+		if (f < 0)
+			f += df1;
+		else
+		{
+			m.x += dir.x;
+			f += df2;
+		}
+		m.y += dir.y;
+	}
+	printf("!!! bresenham_1 end\n");
+}
+
+// branch
+// draw_case == 1 : steep : n > 1 || n < -1
+// draw_case == 0 : steep : 0 < n <= 1 || -1 <= n < 0
 static void	draw_line(t_point s, t_point e, t_fdf *env)
 {
-	t_point	len;
-	t_point	m;
+	t_point	d;
 	t_point	dir;
-	t_point	util;
-	t_point	idx;
 
-	dir.x =  -2 * (s.x > e.x) + 1;
-	dir.y =  -2 * (s.y > e.y) + 1;
-	set_kyusu_algorithm_1(s, e, &len, &m);
-	set_kyusu_algorithm_2(&len, &m, &util);
-	idx.x = 0
-	while (idx.x < len.x)
+	printf("!!! draw line start\n");
+	fflush(stdout);
+	d.y = ft_abs(e.y - s.y);
+	d.x = ft_abs(e.x - s.x);
+	dir.x = -2 * (s.x > e.x) + 1;
+	dir.y = -2 * (s.y > e.y) + 1;
+	printf("What is the s.x : %d\n", s.x);
+	printf("What is the s.y : %d\n", s.y);
+	printf("What is the e.x : %d\n", e.x);
+	printf("What is the e.y : %d\n", e.y);
+	fflush(stdout);
+	if (d.x != 0 && d.y / d.x > 1)
+		bresenham_1(s, e, env, dir);
+	else
+		bresenham_0(s, e, env, dir);
+	fflush(stdout);
+}
+
+static void	draw_px_py(t_fdf *env, t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
 	{
-		idx.y = 0;
-		m.color = m.z;
-		if ((idx.x + 1) % util.y == 0)
-			m.color = m.z + util.x;
-		put_pixel(env, m.x, m.y, get_color(x, s, e, 1));
-		++(idx.y);
-		while (idx.y < m.color)
+		x = 0;
+		while (x < map->width)
 		{
-			m.y += y_dir;
-			put_pixel(env, m.x, m.y, get_color(x, s, e, 1));
-			++(idx.y);
+			if (x != map->width - 1)
+				draw_line(project(x, y, env), project(x + 1, y, env), \
+						env);
+			if (y != map->height - 1)
+				draw_line(project(x, y, env), project(x, y + 1, env), \
+						env);
+			++x;
 		}
-		m.x += x_dir;
-		++(idx.x);
+		++y;
 	}
 }
 
-static void	draw_integrated(t_fdf *env, t_map *map, int x_flag, int y_flag)
+static void	draw_px_ny(t_fdf *env, t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = map->height - 1;
+	while (y >= 0)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			if (x != map->width - 1)
+				draw_line(project(x, y, env), project(x + 1, y, env), \
+						env);
+			if (y != 0)
+				draw_line(project(x, y, env), project(x, y - 1, env), \
+						env);
+			++x;
+		}
+		--y;
+	}
+}
+
+static void	draw_nx_py(t_fdf *env, t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = map->width - 1;
+		while (x >= 0)
+		{
+			if (x != 0)
+				draw_line(project(x, y, env), project(x - 1, y, env), \
+						env);
+			if (y != map->height - 1)
+				draw_line(project(x, y, env), project(x, y + 1, env), \
+						env);
+			--x;
+		}
+		++y;
+	}
+}
+
+static void	draw_nx_ny(t_fdf *env, t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = map->height - 1;
+	while (y >= 0)
+	{
+		x = map->width - 1;
+		while (x >= 0)
+		{
+			if (x != 0)
+				draw_line(project(x, y, env), project(x - 1, y, env), \
+						env);
+			if (y != 0)
+				draw_line(project(x, y, env), project(x, y - 1, env), \
+						env);
+			--x;
+		}
+		--y;
+	}
+}
+
+static void	draw_integrated(t_fdf *env, t_map *map, t_point flag)
 {
 	int	x;
 	int	y;
 	int x_temp;
 
 	y = 0;
-	if (x_flag == -1)
+	if (flag.x == -1)
 		y = map->height - 1;
 	x_temp = 0;
-	if (y_flag == -1)
+	if (flag.y == -1)
 		x_temp = map->width - 1;
 	while (y < map->height && y >= 0)
 	{
@@ -155,28 +295,58 @@ static void	draw_integrated(t_fdf *env, t_map *map, int x_flag, int y_flag)
 		while (x < map->width && x >= 0)
 		{
 			if (x != map->width - 1)
-				draw_line(project(x, y, env), project(x + x_flag, y, env), env);
+				draw_line(project(x, y, env), project(x + flag.x, y, env), \
+						env);
 			if (y != map->height - 1)
-				draw_line(project(x, y, env), project(x, y + y_flag, env), env);
-			x += x_flag;
+				draw_line(project(x, y, env), project(x, y + flag.y, env), \
+						env);
+			x += flag.x;
 		}
-		y += y_flag;
+		y += flag.y;
 	}
 }
 
+static void	draw_integrated(t_fdf *env, t_map *map, t_point flag)
+{
+	int	x;
+	int	y;
+	int x_temp;
+
+	y = 0;
+	if (flag.x == -1)
+		y = map->height - 1;
+	x_temp = 0;
+	if (flag.y == -1)
+		x_temp = map->width - 1;
+	while (y < map->height && y >= 0)
+	{
+		x = x_temp;
+		while (x < map->width && x >= 0)
+		{
+			if (x != map->width - 1)
+				draw_line(project(x, y, env), project(x + flag.x, y, env), \
+						env);
+			if (y != map->height - 1)
+				draw_line(project(x, y, env), project(x, y + flag.y, env), \
+						env);
+			x += flag.x;
+		}
+		y += flag.y;
+	}
+}
 // draw switcher
 void	drawer(t_map *map, t_fdf *env)
 {
-	int x_flag;
-	int y_flag;
+	t_point	flag;
 
 	if (env->img != NULL)
 		func_guard(mlx_destroy_image(env->mlx, env->img));
 	env->img = null_guard(mlx_new_image(env->mlx, WIDTH, HEIGHT));
 	env->data_addr = null_guard(mlx_get_data_addr(env->img, &env->bpp, \
 				&env->size_line, &env->endian));
-	x_flag =  -2 * (env->camera->x_angle > 0) + 1;
-	y_flag =  -2 * (env->camera->y_angle > 0) + 1;
-	draw_integrated(env, map, x_flag, y_flag);
+	flag.x = -2 * (env->camera->x_angle > 0) + 1;
+	flag.y = -2 * (env->camera->y_angle > 0) + 1;
+	draw_integrated(env, map, flag);
+	fflush(stdout);
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }

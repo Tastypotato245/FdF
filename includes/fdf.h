@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:35:51 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 19:04:54 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:05:10 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ double			reset_angles(double angle);
 int				key_press(int keycode, void *params);
 
 // draw.c
+int				get_default_color(int z, int z_min, int z_max);
 void			drawer(t_map *map, t_fdf *env);
 
 // project.c

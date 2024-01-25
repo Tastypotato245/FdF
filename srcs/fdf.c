@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/24 17:12:09 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:08:04 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static t_fdf	*ft_init(const char *path)
 	env->win = null_guard(mlx_new_window(env->mlx, WIDTH, HEIGHT, title));
 	free(title);
 	env->map = NULL;
+	env->img = NULL;
+	env->data_addr = NULL;
 	env->camera = NULL;
 	env->mouse = (t_mouse *)null_guard(malloc(sizeof(t_mouse)));
 	return (env);
@@ -83,10 +85,11 @@ int	main(int argc, char **argv)
 	env->map = map_init();
 	arg_checker(argv[1], env->map);
 	print_array(env->map);
-	fflush(stdout);
 	env->camera = camera_init(env);
 	hook_controls(env);
-	drawer(env, env->map);
+	drawer(env->map, env);
+	printf("test100\n");
+	fflush(stdout);
 	mlx_loop(env->mlx);
 	exit(0);
 }

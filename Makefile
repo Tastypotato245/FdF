@@ -6,7 +6,7 @@
 #    By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:38:00 by kyusulee          #+#    #+#              #
-#    Updated: 2024/01/19 20:01:53 by kyusulee         ###   ########.fr        #
+#    Updated: 2024/01/25 17:04:44 by kyusulee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS		=	$(SRCS_DIR)fdf.c	\
 				$(SRCS_DIR)control.c\
 				$(SRCS_DIR)mouse.c	\
 				$(SRCS_DIR)keyboard.c	\
-				$(SRCS_DIR)draw.c
+				$(SRCS_DIR)draw.c		\
+				$(SRCS_DIR)project.c
 
 OBJS		=	$(SRCS:.c=.o)
 
