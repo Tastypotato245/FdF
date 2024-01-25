@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:39:18 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:54:49 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,7 @@ void	drawer(t_map *map, t_fdf *env)
 	t_point	flag;
 
 	if (env->img != NULL)
-	{
 		func_guard(mlx_destroy_image(env->mlx, env->img));
-		env->img = NULL;
-	}
 	env->img = null_guard(mlx_new_image(env->mlx, WIDTH, HEIGHT));
 	env->data_addr = null_guard(mlx_get_data_addr(env->img, &env->bpp, \
 				&env->size_line, &env->endian));

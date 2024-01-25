@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 21:36:58 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:44:27 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:57:03 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	bresenham_0(t_point s, t_point e, t_fdf *env, t_point dir)
 	df2 = 2 * (d.y - d.x);
 	while (m.x != e.x + dir.x)
 	{
-		put_pixel(env, m.x, m.y, get_color(e));
+		put_pixel(env, m.x, m.y, get_color(s));
 		if (f < 0)
 			f += df1;
 		else
@@ -74,7 +74,7 @@ static void	bresenham_1(t_point s, t_point e, t_fdf *env, t_point dir)
 	df2 = 2 * (d.x - d.y);
 	while (m.y != e.y + dir.y)
 	{
-		put_pixel(env, m.x, m.y, get_color(e));
+		put_pixel(env, m.x, m.y, get_color(s));
 		if (f < 0)
 			f += df1;
 		else
