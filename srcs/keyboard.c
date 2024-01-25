@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:55:10 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:41:15 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:45:35 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	key_press(int keycode, void *params)
 	t_fdf	*env;
 
 	env = (t_fdf *)params;
-	if (keycode == ARROW_DOWN || keycode == ARROW_LEFT || keycode == ARROW_UP
+	if (keycode == ARROW_DOWN || keycode == ARROW_LEFT || keycode == ARROW_UP \
 			|| keycode == ARROW_RIGHT)
 		translate(keycode, env);
 	else if (keycode == MINUS || keycode == PLUS)

@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 13:28:38 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:56:19 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:45:06 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,11 @@ static t_camera	*camera_init(t_fdf *env)
 	return (camera);
 }
 
-//static void	print_array(t_map *map)
-//{
-//	int	i;
-//	int	j;
-//
-//	i = -1;
-//	while (++i < map->height)
-//	{
-//		j = -1;
-//		while (++j < map->width)
-//		{
-//			ft_printf("%d,%d\t", map->array[i][j][0], map->array[i][j][1]);
-//		}
-//		ft_printf("\n");
-//	}
-//}
-
 int	main(int argc, char **argv)
 {
 	t_fdf	*env;
 
-	if (argc != 2)	
+	if (argc != 2)
 		exit_handler(0, "fdf", "./fdf <file.fdf>");
 	env = ft_init(argv[1]);
 	env->map = map_init();

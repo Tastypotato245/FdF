@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:53:50 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:41:21 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:45:51 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	mouse_up(int button, int x, int y, void *params)
 	(void)x;
 	(void)y;
 	env = (t_fdf *)params;
-	if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT
+	if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT \
 			|| button == MOUSE_CLICK_MIDDLE)
 		env->mouse->button = 0;
 	return (0);
@@ -54,7 +54,7 @@ int	mouse_down(int button, int x, int y, void *params)
 	env = (t_fdf *)params;
 	if (button == MOUSE_WHEEL_UP || button == MOUSE_WHEEL_DOWN)
 		zoom(button, env);
-	else if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT
+	else if (button == MOUSE_CLICK_LEFT || button == MOUSE_CLICK_RIGHT \
 			|| button == MOUSE_CLICK_MIDDLE)
 	{
 		env->mouse->button = button;

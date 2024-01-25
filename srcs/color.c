@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 21:35:18 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:40:45 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:44:37 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ int	get_color(t_point e)
 	b = e.color & 0xFF;
 	return ((r << 16) | (g << 8) | b);
 }
-

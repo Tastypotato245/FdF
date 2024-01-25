@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 21:36:58 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:39:25 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:44:27 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,3 @@ void	draw_line(t_point s, t_point e, t_fdf *env)
 	else
 		bresenham_0(s, e, env, dir);
 }
-

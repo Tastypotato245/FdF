@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:24:52 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:41:31 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:46:13 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ unsigned int	ft_atoi_base(const char *str, const char *base)
 		return (0);
 	while ((str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		++i;
-	if (ft_strncmp(&str[i], "0x", 2) == 0
-			&& ft_strncmp(base, "0123456789ABCDEF", 16) == 0)
+	if (ft_strncmp(&str[i], "0x", 2) == 0 && \
+			ft_strncmp(base, "0123456789ABCDEF", 16) == 0)
 		i += 2;
 	while (str[i])
 	{
 		val = val_in_base(ft_toupper(str[i]), base);
 		if (val == -1)
-			break;
+			break ;
 		res = (res * len) + val;
 		++i;
 	}
