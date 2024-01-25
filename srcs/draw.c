@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 12:34:43 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:15:44 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:59:59 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,8 +251,8 @@ void	drawer(t_map *map, t_fdf *env)
 	env->img = null_guard(mlx_new_image(env->mlx, WIDTH, HEIGHT));
 	env->data_addr = null_guard(mlx_get_data_addr(env->img, &env->bpp, \
 				&env->size_line, &env->endian));
-	flag.x = -2 * (env->camera->x_angle < 0) + 1;
-	flag.y = -2 * (env->camera->y_angle < 0) + 1;
+	flag.x = -2 * (env->camera->x_angle > 0) + 1;
+	flag.y = -2 * (env->camera->y_angle > 0) + 1;
 	if (flag.x == 1 && flag.y == 1)
 		draw_px_py(env, map);
 	else if (flag.x == 1 && flag.y == -1)

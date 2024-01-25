@@ -6,7 +6,7 @@
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:55:10 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/25 20:19:39 by kyusulee         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:59:59 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	reset(t_fdf *env)
 		env->camera->y_angle = -0.261799;
 		env->camera->z_angle = 0;
 	}
-	env->camera->z_height = 1;
+	env->camera->z_height = 2;
 	env->camera->zoom = ft_min(WIDTH / env->map->width / 2,
 			HEIGHT / env->map->height / 2);
 }
