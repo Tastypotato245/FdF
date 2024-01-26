@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   project.c                                          :+:      :+:    :+:   */
+/*   project_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyusulee <kyusulee@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 16:15:23 by kyusulee          #+#    #+#             */
-/*   Updated: 2024/01/26 12:58:32 by kyusulee         ###   ########.fr       */
+/*   Created: 2024/01/26 12:58:02 by kyusulee          #+#    #+#             */
+/*   Updated: 2024/01/26 12:58:08 by kyusulee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fdf.h>
+#include <fdf_bonus.h>
 
 // z is base
 static void	rotate_x(int *y, int *z, double x_angle)
