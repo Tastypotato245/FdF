@@ -55,7 +55,6 @@ typedef struct s_map
 	int	***array;
 	int	z_max;
 	int	z_min;
-	int	draw_direction;
 }				t_map;
 
 typedef struct s_camera
@@ -88,7 +87,6 @@ typedef struct s_fdf
 	int			bpp;
 	int			size_line;
 	int			endian;
-	int			steep;
 	t_map		*map;
 	t_camera	*camera;
 	t_mouse		*mouse;
